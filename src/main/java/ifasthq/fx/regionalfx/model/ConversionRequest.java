@@ -1,9 +1,10 @@
-package ifasthq.fx.regionalfx;
+package ifasthq.fx.regionalfx.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
-public class ParamConversionRequest {
+public class ConversionRequest {
 
 	private String conversionType; // from or to
 	private String contractNo;
@@ -11,13 +12,17 @@ public class ParamConversionRequest {
 	private String currencyFrom;
 	private String currencyTo;
 	private BigDecimal amount;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate requestDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate conversionDate;
 
-	public ParamConversionRequest() {
+	public ConversionRequest() {
+		requestDate = LocalDate.now();
+		conversionDate = LocalDate.now();
 	}
 
-	public ParamConversionRequest(String conversionType, String contractNo, String tradeType, String currencyFrom, String currencyTo, BigDecimal amount, LocalDate requestDate, LocalDate conversionDate) {
+	public ConversionRequest(String conversionType, String contractNo, String tradeType, String currencyFrom, String currencyTo, BigDecimal amount, LocalDate requestDate, LocalDate conversionDate) {
 		this.conversionType = conversionType;
 		this.contractNo = contractNo;
 		this.tradeType = tradeType;
@@ -30,7 +35,7 @@ public class ParamConversionRequest {
 
 	@Override
 	public String toString() {
-		return "ParamConversionRequest{" +
+		return "ConversionRequest{" +
 			"conversionType='" + conversionType + '\'' +
 			", contractNo='" + contractNo + '\'' +
 			", tradeType='" + tradeType + '\'' +

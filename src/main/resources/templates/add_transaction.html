@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Make New FX Conversion Request</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>Form</h1>
+<form action="#" th:action="@{/fx/transaction}" th:object="${conversionRequest}" method="post">
+
+    <p> Conversion Type:
+        <label th:each="radioValue: ${conversionTypeList}">
+            <input type="radio" class="radio" th:id="conversionType" th:name="conversionType" th:checked="${conversionTypeList.indexOf(radioValue)==0}" th:value="${radioValue}" th:text="${radioValue}"/></input>
+        </label>
+    </p>
+
+    <p>
+        <label> Contract No:
+            <input type="text" th:field="*{contractNo}" />
+        </label>
+    </p>
+
+    <p>
+        <label> Trade Type:
+            <select th:field="*{tradeType}">
+                <option
+                        th:each="dropdownValue: ${tradeTypeList}"
+                        th:value="${dropdownValue}"
+                        th:text="${dropdownValue}">
+                </option>
+            </select>
+        </label>
+    </p>
+
+    <p>
+        <label> Currency FROM:
+            <select th:id="currencyFrom" th:name="currencyFrom">
+                <option
+                        th:each="dropdownValue: ${currencyList}"
+                        th:value="${dropdownValue}"
+                        th:text="${dropdownValue}"
+                        th:selected="${dropdownValue.equalsIgnoreCase('USD')}">
+                </option>
+            </select>
+        </label>
+    </p>
+
+    <p>
+        <label> Currency TO:
+            <select th:id="currencyTo" th:name="currencyTo">
+                <option
+                        th:each="dropdownValue: ${currencyList}"
+                        th:value="${dropdownValue}"
+                        th:text="${dropdownValue}"
+                        th:selected="${dropdownValue.equalsIgnoreCase('SGD')}">
+                </option>
+            </select>
+        </label>
+
+    </p>
+
+    <p>
+        <label> Amount:
+            <input type="number" th:field="*{amount}" />
+        </label>
+    </p>
+
+    <p>
+        <label> Request Date:
+            <input type="date" th:field="*{requestDate}" />
+        </label>
+    </p>
+
+    <p>
+        <label> Conversion Date:
+            <input type="date" th:field="*{conversionDate}" />
+        </label>
+    </p>
+
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+
+</form>
+</body>
+</html>
