@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/fx")
+@RequestMapping("/request")
 public class FxTransactionController {
 
 	private List<ConversionRequest> conversionRequestList;
@@ -25,16 +25,16 @@ public class FxTransactionController {
 	@PostConstruct
 	public void init() {
 		conversionRequestList = new ArrayList<>();
-		conversionRequestList.add(new ConversionRequest("BID", "CTC0000001", "UT", "SGD", "USD", new BigDecimal("200"), LocalDate.now(), LocalDate.now()));
-		conversionRequestList.add(new ConversionRequest("ASK", "CTC0000001", "UT", "SGD", "USD", new BigDecimal("200"), LocalDate.now(), LocalDate.now()));
+		conversionRequestList.add(new ConversionRequest("BID", "UTC001", "UT", "EUR", "USD", new BigDecimal("1000"), LocalDate.now(), LocalDate.now()));
+		conversionRequestList.add(new ConversionRequest("ASK", "UTC002", "UT", "USD", "CHN", new BigDecimal("6000"), LocalDate.now(), LocalDate.now()));
 
 		conversionTypeList = new ArrayList<>();
 		conversionTypeList.add("BID");
 		conversionTypeList.add("ASK");
 
 		tradeTypeList = new ArrayList<>();
-		tradeTypeList.add("Unit Trust");
-		tradeTypeList.add("Bonds");
+		tradeTypeList.add("UT");
+		tradeTypeList.add("BND");
 
 		currencyList = new ArrayList<>();
 		currencyList.add("AUD");
@@ -48,25 +48,25 @@ public class FxTransactionController {
 		currencyList.add("USD");
 	}
 
-	@GetMapping("/add_transaction")
-	public String goAddNewTransaction(Model model) {
+	@GetMapping
+	public String dirViewFxRequest(Model model) {
+		model.addAttribute("requestList", conversionRequestList);
+		return "fx-request/view_request";
+	}
+
+	@GetMapping("/create")
+	public String dirCreateFxRequest(Model model) {
 		model.addAttribute("conversionRequest", new ConversionRequest());
 		model.addAttribute("conversionTypeList", conversionTypeList);
 		model.addAttribute("tradeTypeList", tradeTypeList);
 		model.addAttribute("currencyList", currencyList);
-		return "add_transaction";
+		return "fx-request/create_request";
 	}
 
-	@GetMapping("/transaction")
-	public String greeting(Model model) {
-		model.addAttribute("requestList", conversionRequestList);
-		return "view_transaction";
-	}
-
-	@PostMapping("/transaction")
-	public String greetingSubmit(@ModelAttribute("conversionRequest") ConversionRequest conversionRequest) {
+	@PostMapping
+	public String createConversionRequest(@ModelAttribute("conversionRequest") ConversionRequest conversionRequest) {
 		conversionRequestList.add(conversionRequest);
-		return "result";
+		return "fx-request/result";
 	}
 
 }
