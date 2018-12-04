@@ -1,11 +1,11 @@
 package ifasthq.fx.regionalfx.controller;
 
 import ifasthq.fx.regionalfx.model.ConversionRequest;
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import ifasthq.fx.regionalfx.service.FxRequestService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,19 +15,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/request")
-public class FxTransactionController {
+public class FxRequestController {
 
-	private List<ConversionRequest> conversionRequestList;
+	private final FxRequestService fxRequestService;
 	private List<String> conversionTypeList = new ArrayList<>();
 	private List<String> tradeTypeList = new ArrayList<>();
 	private List<String> currencyList = new ArrayList<>();
 
+	@Autowired
+	public FxRequestController(FxRequestService fxRequestService) {
+		this.fxRequestService = fxRequestService;
+	}
+
 	@PostConstruct
 	public void init() {
-		conversionRequestList = new ArrayList<>();
-		conversionRequestList.add(new ConversionRequest("BID", "UTC001", "UT", "EUR", "USD", new BigDecimal("1000"), LocalDate.now(), LocalDate.now()));
-		conversionRequestList.add(new ConversionRequest("ASK", "UTC002", "UT", "USD", "CHN", new BigDecimal("6000"), LocalDate.now(), LocalDate.now()));
-
 		conversionTypeList = new ArrayList<>();
 		conversionTypeList.add("BID");
 		conversionTypeList.add("ASK");
@@ -50,7 +51,7 @@ public class FxTransactionController {
 
 	@GetMapping
 	public String dirViewFxRequest(Model model) {
-		model.addAttribute("requestList", conversionRequestList);
+		model.addAttribute("requestList", fxRequestService.getAllConversionRequest());
 		return "fx-request/view_request";
 	}
 
@@ -65,7 +66,7 @@ public class FxTransactionController {
 
 	@PostMapping
 	public String createConversionRequest(@ModelAttribute("conversionRequest") ConversionRequest conversionRequest) {
-		conversionRequestList.add(conversionRequest);
+		fxRequestService.addConversionRequest(conversionRequest);
 		return "fx-request/result";
 	}
 

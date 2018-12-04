@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1>Form</h1>
-<form action="#" th:action="@{/fx/transaction}" th:object="${conversionRequest}" method="post">
+<form action="#" th:action="@{/request}" th:object="${conversionRequest}" method="post">
 
     <p> Conversion Type:
         <label th:each="radioValue: ${conversionTypeList}">
