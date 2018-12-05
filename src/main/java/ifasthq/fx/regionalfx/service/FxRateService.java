@@ -6,5 +6,7 @@ import java.util.List;
 public interface FxRateService {
 
 	List<ViewRate> getAllRates();
+	ViewRate getRateByName(String quoteName);
+	ViewRate getRateByCurrencyPair(String baseCurrency, String quoteCurrency);
 
 }

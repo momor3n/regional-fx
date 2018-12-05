@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
 <head>
     <title>FX Netting</title>
     <meta charset="utf-8"/>
@@ -30,16 +29,16 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="request,rowStat:${listOfRequest}"
-                th:style="${rowStat.odd}?'color: gray':'color: blue;'">
-                <td th:text="${request.conversionType}"></td>
-                <td th:text="${request.contractNo}"></td>
-                <td th:text="${request.tradeType}"></td>
-                <td th:text="${request.currencyFrom}"></td>
-                <td th:text="${request.currencyTo}"></td>
-                <td th:text="${request.amount}"></td>
-                <td th:text="${request.requestDate}"></td>
-                <td th:text="${request.conversionDate}"></td>
+            <tr th:each="request, rowStat: ${listOfRequest}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${request.conversionType}">Conversion Type</td>
+                <td th:text="${request.contractNo}">Contract No</td>
+                <td th:text="${request.tradeType}">Trade Type</td>
+                <td th:text="${request.currencyFrom}">Currency From</td>
+                <td th:text="${request.currencyTo}">Currency To</td>
+                <td th:text="${request.amount}">Amount</td>
+                <td th:text="${request.requestDate}">Request Date</td>
+                <td th:text="${request.conversionDate}">Conversion Date</td>
             </tr>
             </tbody>
         </table>
@@ -62,7 +61,7 @@
             <tbody>
             <tr th:each="rate,rowStat:${rateList}"
                 th:style="${rowStat.odd}?'color: gray':'color: blue;'">
-                <td th:text="${rate.quoteName}"></td>
+                <td th:text="${rate.quoteName}"</td>
                 <td th:text="${rate.bid}"></td>
                 <td th:text="${rate.ask}"></td>
                 <td th:text="${rate.spread}"></td>
@@ -87,7 +86,7 @@
             <tbody>
             <tr th:each="flow,rowStat:${fundFlowList}"
                 th:style="${rowStat.odd}?'color: gray':'color: blue;'">
-                <td th:text="${flow.contractNo}"></td>
+                <td th:text="${flow.contractNo}"</td>
                 <td th:text="${flow.currency}"></td>
                 <td th:text="${flow.amount}"></td>
             </tr>
@@ -109,7 +108,7 @@
             <tbody>
             <tr th:each="record,rowStat:${summaryFundFlow}"
                 th:style="${rowStat.odd}?'color: gray':'color: blue;'">
-                <td th:text="${record.key}"></td>
+                <td th:text="${record.key}"</td>
                 <td th:text="${record.value}"></td>
             </tr>
             </tbody>
@@ -135,10 +134,10 @@
             <tbody>
             <tr th:each="trn,rowStat:${fxTransactionList}"
                 th:style="${rowStat.odd}?'color: gray':'color: blue;'">
-                <td th:text="${trn.orderId}"></td>
-                <td th:text="${trn.fromCurrency}"></td>
-                <td th:text="${trn.fromAmount}"></td>
-                <td th:text="${trn.toCurrency}"></td>
+                <td th:text="${trn.orderId}"</td>
+                <td th:text="${trn.fromCurrency}"</td>
+                <td th:text="${trn.fromAmount}"</td>
+                <td th:text="${trn.toCurrency}"</td>
                 <td th:text="${trn.toAmount}"></td>
                 <td th:text="${trn.execRate}"></td>
                 <td th:text="${trn.execTime}"></td>
@@ -161,7 +160,7 @@
             <tbody>
             <tr th:each="record,rowStat:${balanceFund}"
                 th:style="${rowStat.odd}?'color: gray':'color: blue;'">
-                <td th:text="${record.key}"></td>
+                <td th:text="${record.key}"</td>
                 <td th:text="${record.value}"></td>
             </tr>
             </tbody>
@@ -177,7 +176,7 @@
         Total Value Request (SGD): <p th:text="${nettingReport.totalValueRequestSGD}"></p>
         Actual Value Converted (SGD): <p th:text="${nettingReport.totalValueConvertSGD}"></p>
         Total Amount of Conversion Avoided (SGD): <p th:text="${nettingReport.totalValueReduceSGD}"></p>
-        Cost Savings (SGD): <p th:text="${nettingReport.costSavingSGD}"></p>
+        Cost Savings (SGD): <p th:text="${nettingReport.costSavingSGD}">Test</p>
         Total Surplus (SGD): <p th:text="${nettingReport.totalSurplusSGD}"></p>
         Total Profit (SGD): <p th:text="${nettingReport.totalProfitSGD}"></p>
     </div>

@@ -1,4 +1,9 @@
 package ifasthq.fx.regionalfx.service;
 
-public class FxNettingService {
+import java.util.Map;
+
+public interface FxNettingService {
+
+	Map<String, Object> consolidateRequest() throws Exception;
+
 }

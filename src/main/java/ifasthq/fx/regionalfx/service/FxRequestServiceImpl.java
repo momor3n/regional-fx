@@ -20,7 +20,11 @@ public class FxRequestServiceImpl implements FxRequestService {
 	public void init() {
 		conversionRequestList = new ArrayList<>();
 		conversionRequestList.add(new ConversionRequest("BID", "UTC001", "UT", "EUR", "USD", new BigDecimal("1000"), LocalDate.now(), LocalDate.now()));
-		conversionRequestList.add(new ConversionRequest("ASK", "UTC002", "UT", "USD", "CHN", new BigDecimal("6000"), LocalDate.now(), LocalDate.now()));
+		conversionRequestList.add(new ConversionRequest("BID", "UTC002", "UT", "EUR", "USD", new BigDecimal("5000"), LocalDate.now(), LocalDate.now()));
+		conversionRequestList.add(new ConversionRequest("BID", "UTC003", "UT", "EUR", "USD", new BigDecimal("5000"), LocalDate.now(), LocalDate.now()));
+		conversionRequestList.add(new ConversionRequest("BID", "UTC004", "UT", "USD", "CHN", new BigDecimal("6000"), LocalDate.now(), LocalDate.now()));
+		conversionRequestList.add(new ConversionRequest("BID", "UTC005", "UT", "USD", "CHN", new BigDecimal("2000"), LocalDate.now(), LocalDate.now()));
+		conversionRequestList.add(new ConversionRequest("BID", "UTC006", "UT", "USD", "CHN", new BigDecimal("4000"), LocalDate.now(), LocalDate.now()));
 	}
 
 	@Override

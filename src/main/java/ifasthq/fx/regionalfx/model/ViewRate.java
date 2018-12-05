@@ -28,6 +28,19 @@ public class ViewRate {
 		spread = bid.subtract(ask).multiply(new BigDecimal(10000)).doubleValue();
 	}
 
+	@Override
+	public String toString() {
+		return "ViewRate{" +
+			"quoteName='" + quoteName + '\'' +
+			", bid=" + bid +
+			", ask=" + ask +
+			", currencyBid='" + currencyBid + '\'' +
+			", currencyAsk='" + currencyAsk + '\'' +
+			", spread=" + spread +
+			", timestamp=" + timestamp +
+			'}';
+	}
+
 	public String getQuoteName() {
 		return quoteName;
 	}

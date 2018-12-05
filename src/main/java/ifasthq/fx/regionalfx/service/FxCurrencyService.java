@@ -1,4 +1,9 @@
 package ifasthq.fx.regionalfx.service;
 
-public class FxCurrencyService {
+import java.util.List;
+
+public interface FxCurrencyService {
+
+	List<String> getAllCurrency();
+
 }
